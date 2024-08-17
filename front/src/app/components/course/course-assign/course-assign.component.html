@@ -1,0 +1,27 @@
+<div class="container mx-auto mt-10">
+    <h2 class="text-2xl font-bold mb-4">Assign User to Course</h2>
+    <form [formGroup]="assignForm" (ngSubmit)="onSubmit()">
+      <div class="mb-4">
+        <label for="userId" class="block text-sm font-medium text-gray-700">Select User</label>
+        <select id="userId" formControlName="userId" class="form-control">
+          <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
+        </select>
+        <div *ngIf="assignForm.get('userId')?.invalid && assignForm.get('userId')?.touched" class="form-error">
+          User is required.
+        </div>
+      </div>
+      <div class="mb-4">
+        <label for="courseId" class="block text-sm font-medium text-gray-700">Select Course</label>
+        <select id="courseId" formControlName="courseId" class="form-control">
+          <option *ngFor="let course of courses" [value]="course.id">{{ course.name }}</option>
+        </select>
+        <div *ngIf="assignForm.get('courseId')?.invalid && assignForm.get('courseId')?.touched" class="form-error">
+          Course is required.
+        </div>
+      </div>
+      <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium rounded-full px-6 py-3 text-center mb-2">
+        Assign User
+      </button>
+    </form>
+  </div>
+  
